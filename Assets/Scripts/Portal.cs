@@ -41,6 +41,21 @@ public class Portal : MonoBehaviour
             {
                 semaphore.isOn = true;
             }
+
+            if (!destination.stopAllVehicles)
+            {
+                // Start all vehicles
+                foreach (var vehicle in FindObjectsOfType<Vehicle>())
+                {
+                    vehicle.Stop = false;
+                }
+
+                // Start all spawners
+                foreach (var spawner in FindObjectsOfType<VehicleSpawner>())
+                {
+                    spawner.canSpawn = true;
+                }
+            }
         });
     }
 }

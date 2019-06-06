@@ -79,8 +79,8 @@ public class Semaphore : MonoBehaviour
                     {
                         // player position lies between crossingStart and crossingEnd (and the semaphore is turning red)
                         player.Lose();
-                        elapsedTime = 0;
-                        status = SemaphoreStatus.Green;
+                        elapsedTime = redTime;
+                        status = SemaphoreStatus.Red;
                     }
                 }
                 break;
@@ -100,8 +100,8 @@ public class Semaphore : MonoBehaviour
                 {
                     // player position lies between crossingStart and crossingEnd (and the semaphore is actually red)
                     player.Lose();
-                    elapsedTime = 0;
-                    status = SemaphoreStatus.Green;
+                    elapsedTime = redTime;
+                    status = SemaphoreStatus.Red;
                 }
                 break;
         }

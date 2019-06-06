@@ -10,6 +10,7 @@ public class Crossing : MonoBehaviour
     public Transform nextWaypoint;
     public float minDistance;
     public Crossing nextCrossing;
+    public bool stopAllVehicles;
 
     private Player player;
     private bool isTeleporting = false;
@@ -72,6 +73,20 @@ public class Crossing : MonoBehaviour
             {
                 semaphore.isOn = true;
             }
+
+            // Reset all vehicles
+            foreach (var vehicle in FindObjectsOfType<Vehicle>())
+            {
+                vehicle.Reset();
+                vehicle.Stop = true;
+            }
+
+            // Stop all spawners
+            foreach (var spawner in FindObjectsOfType<VehicleSpawner>())
+            {
+                spawner.canSpawn = false;
+            }
+
             isTeleporting = false;
         });
     }

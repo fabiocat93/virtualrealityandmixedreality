@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public void Lose()
     {
         Debug.LogError("Player has lost");
+        GetComponent<Collider>().enabled = false;
         canMove = false;
         Vector3 targetPos = currentCrossing.crossingStart.position;
         targetPos.y = 1.5f;
@@ -51,6 +52,13 @@ public class Player : MonoBehaviour
             transform.position = targetPos;
             transform.rotation = targetRot;
             canMove = true;
+            GetComponent<Collider>().enabled = true;
+
+            // Reset all vehicles
+            foreach (var vehicle in FindObjectsOfType<Vehicle>())
+            {
+                vehicle.Reset();
+            }
         });
     }
 
@@ -72,6 +80,14 @@ public class Player : MonoBehaviour
         {
             Ray ray = new Ray(vrCamera.transform.position, vrCamera.transform.forward);
             Gizmos.DrawLine(ray.GetPoint(0), ray.GetPoint(100));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Vehicle"))
+        {
+            Lose();
         }
     }
 }

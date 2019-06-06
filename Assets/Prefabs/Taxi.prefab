@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8266967916003877034}
   - component: {fileID: 8273979010326886108}
   - component: {fileID: 8286592535671607660}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 8261213947644807852}
   - component: {fileID: 8273990518132373298}
   - component: {fileID: 8284616949739856896}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: police_car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 8267115641777517734}
   - component: {fileID: 8276778930863694936}
   - component: {fileID: 8284906297486136496}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8267032342112270020}
-  m_Layer: 0
+  - component: {fileID: 2454315449275089385}
+  - component: {fileID: 8521825697932627411}
+  m_Layer: 12
   m_Name: Taxi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,6 +271,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.10300001, y: -93.034004, z: 0.0050000004}
+--- !u!65 &2454315449275089385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263809078027985524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.7, z: 2.5}
+  m_Center: {x: 0, y: 0.35, z: 0}
+--- !u!114 &8521825697932627411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8263809078027985524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3ce33407856fa43ae4ce10b44b82d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyAfterSeconds: 30
+  forwardProbability: 0.8
+  speed: 5
+  wasSpawned: 0
 --- !u!1 &8263906372050498278
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +311,7 @@ GameObject:
   - component: {fileID: 8267415463489588246}
   - component: {fileID: 8277280881735079228}
   - component: {fileID: 8284504089128636660}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +389,7 @@ GameObject:
   - component: {fileID: 8267391692666784080}
   - component: {fileID: 8276770286102138250}
   - component: {fileID: 8285099949438252704}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Object017
   m_TagString: Untagged
   m_Icon: {fileID: 0}

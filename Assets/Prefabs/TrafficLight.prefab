@@ -3029,7 +3029,7 @@ MonoBehaviour:
   yellowLight: {fileID: 6082483651758013001}
   redLight: {fileID: 3968833531583833802}
   isOn: 0
-  redLightLoseDistance: 8
+  redLightLoseDistance: 15
 --- !u!1 &2344389397877450688
 GameObject:
   m_ObjectHideFlags: 0
