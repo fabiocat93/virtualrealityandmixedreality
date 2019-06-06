@@ -15,14 +15,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && canMove)
+        if ((Input.GetKey(KeyCode.Space) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) && canMove)
         {
             Vector3 direction = (destination.position - transform.position).normalized;
             direction.y = 0;
             transform.Translate(direction * speed * Time.deltaTime, Space.World);
         }
 
-        if (Input.GetKey(KeyCode.Space) && canSelect)
+        if ((Input.GetKey(KeyCode.Space) || OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger)) && canSelect)
         {
             RaycastHit hitInfo;
             Ray ray = new Ray(vrCamera.transform.position, vrCamera.transform.forward);

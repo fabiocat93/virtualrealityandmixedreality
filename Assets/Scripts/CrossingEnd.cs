@@ -5,9 +5,13 @@ using UnityEngine;
 public class CrossingEnd : MonoBehaviour
 {
 
+    public Transform crossingStart;
+    public Transform crossingEnd;
     public Transform nextWaypoint;
     public float minDistance;
-    public Player player;
+    public CrossingEnd nextCrossing;
+
+    private Player player;
 
     private void Start()
     {
@@ -16,12 +20,36 @@ public class CrossingEnd : MonoBehaviour
 
     void Update()
     {
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = player.transform.position - crossingEnd.position;
         direction.y = 0;
         if (direction.sqrMagnitude < minDistance * minDistance)
         {
+            if(nextCrossing == null)
+            {
+                // THE END
+                player.canMove = false;
+                return;
+            }
+
             player.canMove = false;
             player.canSelect = true;
+
+            foreach (var camera in GetComponentsInChildren<Camera>())
+            {
+                camera.enabled = false;
+            }
+            foreach (var camera in nextCrossing.GetComponentsInChildren<Camera>())
+            {
+                camera.enabled = true;
+            }
+
+            foreach (var portal in nextWaypoint.transform.parent.GetComponentsInChildren<Portal>())
+            {
+                portal.destination = nextCrossing.crossingStart;
+            }
+
+            player.destination = nextCrossing.crossingEnd;
+
             Invoke("Teleport", 3);
         }
     }
