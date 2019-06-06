@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossingEnd : MonoBehaviour
+public class Crossing : MonoBehaviour
 {
 
     public Transform crossingStart;
     public Transform crossingEnd;
     public Transform nextWaypoint;
     public float minDistance;
-    public CrossingEnd nextCrossing;
+    public Crossing nextCrossing;
 
     private Player player;
+    private bool isTeleporting = false;
 
     private void Start()
     {
@@ -45,12 +46,16 @@ public class CrossingEnd : MonoBehaviour
 
             foreach (var portal in nextWaypoint.transform.parent.GetComponentsInChildren<Portal>())
             {
-                portal.destination = nextCrossing.crossingStart;
+                portal.destination = nextCrossing;
             }
 
             player.destination = nextCrossing.crossingEnd;
 
-            Invoke("Teleport", 3);
+            if (!isTeleporting)
+            {
+                isTeleporting = true;
+                Invoke("Teleport", 3);
+            }
         }
     }
 
@@ -61,6 +66,13 @@ public class CrossingEnd : MonoBehaviour
         OculusCameraFade.Instance.DoFade(() => {
             player.transform.position = targetPos;
             player.transform.rotation = targetRot;
+
+            Semaphore semaphore = GetComponentInChildren<Semaphore>();
+            if (semaphore != null)
+            {
+                semaphore.isOn = true;
+            }
+            isTeleporting = false;
         });
     }
 }
