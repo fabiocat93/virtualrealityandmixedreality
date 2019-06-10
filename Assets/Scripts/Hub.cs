@@ -7,7 +7,7 @@ public class Hub : MonoBehaviour
 
     public Material normalBoxMaterial;
     public Material wrongChoiceBoxMaterial;
-
+    public Material rightChoiceBoxMaterial;
     public Transform boxParent;
 
     private void Start()
@@ -20,6 +20,16 @@ public class Hub : MonoBehaviour
         foreach (var meshRenderer in boxParent.GetComponentsInChildren<MeshRenderer>())
         {
             meshRenderer.sharedMaterial = wrongChoiceBoxMaterial;
+        }
+
+        Invoke("ResetNormalMaterial", 0.5f);
+    }
+
+    public void RightChoiceMade()
+    {
+        foreach (var meshRenderer in boxParent.GetComponentsInChildren<MeshRenderer>())
+        {
+            meshRenderer.sharedMaterial = rightChoiceBoxMaterial;
         }
 
         Invoke("ResetNormalMaterial", 0.5f);

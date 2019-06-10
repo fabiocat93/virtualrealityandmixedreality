@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-
     public Crossing destination;
     public bool isRight;
-
+    public GameController gameController;
     private Hub hub;
 
     private void Start()
@@ -19,43 +18,14 @@ public class Portal : MonoBehaviour
     {
         if (!isRight)
         {
-            hub.WrongChoiceMade();
+            // Logica di quando viene sbagliata una scelta
+            gameController.manageWrongChoiceInHub();
             return;
         }
-        
-        Player player = FindObjectOfType<Player>();
-        player.canMove = true;
-        player.canSelect = false;
-        Vector3 targetPos = destination.crossingStart.position;
-        targetPos.y = 1.5f;
-        Quaternion targetRot = Quaternion.Euler(0, destination.crossingStart.rotation.eulerAngles.y + 180, 0);
-        OculusCameraFade.Instance.DoFade(() =>
+        else
         {
-            player.transform.position = targetPos;
-            player.transform.rotation = targetRot;
-
-            player.currentCrossing = destination;
-
-            Semaphore semaphore = destination.GetComponentInChildren<Semaphore>();
-            if(semaphore != null)
-            {
-                semaphore.isOn = true;
-            }
-
-            if (!destination.stopAllVehicles)
-            {
-                // Start all vehicles
-                foreach (var vehicle in FindObjectsOfType<Vehicle>())
-                {
-                    vehicle.Stop = false;
-                }
-
-                // Start all spawners
-                foreach (var spawner in FindObjectsOfType<VehicleSpawner>())
-                {
-                    spawner.canSpawn = true;
-                }
-            }
-        });
+            // Logica di quando viene fatta la scelta giusta e bisogna scendere all'incrocio
+            gameController.manageRightChoiceInHub();
+        }
     }
 }

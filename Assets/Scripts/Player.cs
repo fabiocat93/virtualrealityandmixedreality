@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
             transform.Translate(direction * speed * Time.deltaTime, Space.World);
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && canSelect)
+        if (Input.GetKeyUp(KeyCode.Space) && canSelect && Application.isEditor)
         {
             RaycastHit hitInfo;
             Ray ray = new Ray(vrCamera.transform.position, vrCamera.transform.forward);
@@ -89,5 +89,10 @@ public class Player : MonoBehaviour
         {
             Lose();
         }
+    }
+
+    public void setEnabled(bool b)
+    {
+        this.enabled = b;
     }
 }

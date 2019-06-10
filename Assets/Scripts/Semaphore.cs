@@ -9,6 +9,8 @@ public class Semaphore : MonoBehaviour
     public float yellowTime;
     public float redTime;
 
+    public GameController gameController;
+
     public GameObject greenLight;
     public GameObject yellowLight;
     public GameObject redLight;
@@ -23,7 +25,7 @@ public class Semaphore : MonoBehaviour
     private Player player;
     private Crossing crossing;
 
-    private enum SemaphoreStatus
+    public enum SemaphoreStatus
     {
         Green, Yellow, Red
     }
@@ -78,14 +80,25 @@ public class Semaphore : MonoBehaviour
                     if (a > redLightLoseDistance && a < b - redLightLoseDistance)
                     {
                         // player position lies between crossingStart and crossingEnd (and the semaphore is turning red)
-                        player.Lose();
                         elapsedTime = redTime;
                         status = SemaphoreStatus.Red;
                     }
                 }
                 break;
             case SemaphoreStatus.Red:
-                if (elapsedTime > redTime)
+
+                a = Vector3.Dot(crossing.crossingEnd.position - crossing.crossingStart.position, player.transform.position - crossing.crossingStart.position);
+                b = Vector3.Dot(crossing.crossingEnd.position - crossing.crossingStart.position, crossing.crossingEnd.position - crossing.crossingStart.position);
+                if (a > redLightLoseDistance && a < b - redLightLoseDistance)
+                {
+                    // player position lies between crossingStart and crossingEnd (and the semaphore is actually red)
+                    enabled = false;
+                    gameController.makeThePlayerLooseStrips();
+                    /*
+                    elapsedTime = 0;
+                    status = SemaphoreStatus.Green;
+                    */
+                } else if (elapsedTime > redTime)
                 {
                     greenLight.SetActive(true);
                     yellowLight.SetActive(false);
@@ -94,17 +107,23 @@ public class Semaphore : MonoBehaviour
                     status = SemaphoreStatus.Green;
                 }
                 
-                a = Vector3.Dot(crossing.crossingEnd.position - crossing.crossingStart.position, player.transform.position - crossing.crossingStart.position);
-                b = Vector3.Dot(crossing.crossingEnd.position - crossing.crossingStart.position, crossing.crossingEnd.position - crossing.crossingStart.position);
-                if (a > redLightLoseDistance && a < b - redLightLoseDistance)
-                {
-                    // player position lies between crossingStart and crossingEnd (and the semaphore is actually red)
-                    player.Lose();
-                    elapsedTime = redTime;
-                    status = SemaphoreStatus.Red;
-                }
                 break;
         }
+    }
+
+    public void enableSemaphore()
+    {
+        greenLight.SetActive(true);
+        yellowLight.SetActive(false);
+        redLight.SetActive(false);
+        elapsedTime = 0;
+        status = SemaphoreStatus.Green;
+        enabled = true;
+    }
+
+    public SemaphoreStatus getStatus()
+    {
+        return status;
     }
 
     private void OnDrawGizmos()
