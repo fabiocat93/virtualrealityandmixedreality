@@ -9,23 +9,44 @@ public class GameController : MonoBehaviour
     public Hub hub;
     public Crossing crossing;
     public AudioManager audioManager;
-
     private Player player;
-     
+    public GameObject OVRCamera;
+    public Transform cameraPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>();
         player.setEnabled(false);
-        float lengthAudio = audioManager.PlayStartHub();
-        StartCoroutine(WaitAudioToBeFinishedAndEnablePlayer(lengthAudio));
+        float lengthAudio = audioManager.PlayIntro();
+        Debug.Log(lengthAudio);
+        StartCoroutine(WaitAudioToBeFinishedAndMovePlayerToHub(lengthAudio));
+        
     }
+
+    public IEnumerator WaitAudioToBeFinishedAndMovePlayerToHub(float lengthAudio)
+    {
+        yield return new WaitForSeconds(lengthAudio);
+        Debug.Log("WaitAudioToBeFinishedAndMovePlayerToHub");
+        player.setEnabled(true);
+        Vector3 camHubPosition = cameraPosition.position;
+        OVRCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
+        Debug.Log(camHubPosition);
+        OVRCamera.transform.position = new Vector3(camHubPosition.x, camHubPosition.y, camHubPosition.z);
+        Debug.Log(OVRCamera.transform.position);
+
+        float lengthAudio2 = audioManager.PlayStartHub();
+        StartCoroutine(WaitAudioToBeFinishedAndEnablePlayer(lengthAudio2));
+
+    }
+
 
     public IEnumerator WaitAudioToBeFinishedAndEnablePlayer(float lengthAudio)
     {
         yield return new WaitForSeconds(lengthAudio);
         Debug.Log("WaitAndStartChoiceInHub");
         player.setEnabled(true);
+       
     }
 
     public IEnumerator WaitAudioToBeFinishedAndTeleportToCrossing(float lengthAudio)

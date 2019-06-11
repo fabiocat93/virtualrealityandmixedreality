@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     private AudioSource myAudioSource;
-
+    public AudioClip intro;
     public AudioClip startHub;
     public AudioClip rightChoiceHub;
     public AudioClip wrongChoiceHub;
@@ -38,6 +38,13 @@ public class AudioManager : MonoBehaviour
     {
         PlayMusic(wrongCrossingRed);
         return wrongCrossingRed.length;
+
+    }
+
+    public float PlayIntro()
+    {
+        PlayMusic(intro);
+        return intro.length;
 
     }
 
