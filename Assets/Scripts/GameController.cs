@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour
         OVRCamera.transform.position = new Vector3(camHubPosition.x, camHubPosition.y, camHubPosition.z);
         Debug.Log(OVRCamera.transform.position);
 
+        player.setEnabled(false);
         float lengthAudio2 = audioManager.PlayStartHub();
         StartCoroutine(WaitAudioToBeFinishedAndEnablePlayer(lengthAudio2));
 
