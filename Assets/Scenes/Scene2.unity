@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44350907, g: 0.4928096, b: 0.57241035, a: 1}
+  m_IndirectSpecularColor: {r: 0.35285845, g: 0.5736448, b: 0.8686639, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8796,6 +8796,11 @@ PrefabInstance:
       propertyPath: redLightLoseDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8164990772655202257, guid: 205870acddd52ea459e0bff35e6e57c4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 1307142896, guid: 205870acddd52ea459e0bff35e6e57c4, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -8820,11 +8825,6 @@ PrefabInstance:
     - target: {fileID: 1355402559, guid: 205870acddd52ea459e0bff35e6e57c4, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164990772655202257, guid: 205870acddd52ea459e0bff35e6e57c4,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7759524211592294262, guid: 205870acddd52ea459e0bff35e6e57c4, type: 3}
@@ -27396,26 +27396,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2069825473}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1098633612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1098633611}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd171ccabff44ea4ea7ed065ff6113aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
-  destination: {fileID: 0}
-  canMove: 1
-  canSelect: 1
-  vrCamera: {fileID: 2131681957}
-  headingForwardSideAngle: 90
-  headingForwardUpAngle: 80
-  currentCrossing: {fileID: 0}
 --- !u!114 &1098633613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50104,6 +50084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OVRCameraRig
       objectReference: {fileID: 0}
+    - target: {fileID: 1998059208, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50148,10 +50132,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
-      propertyPath: _headPoseRelativeOffsetRotation.y
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 1098633612, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: destination
+      value: 
+      objectReference: {fileID: 327432470}
     - target: {fileID: 459718, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -50176,11 +50160,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 500722561, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 25874960, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 4919
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11400000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: _headPoseRelativeOffsetRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 26037872, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1098633620, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
+    - {fileID: 1098633612, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
 --- !u!4 &2070368085 stripped
 Transform:
